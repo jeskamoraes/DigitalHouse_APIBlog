@@ -2,6 +2,7 @@ package com.portoseguro.blogpessoal.security;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,3 +25,4 @@ import com.portoseguro.blogpessoal.repository.UsuarioRepository;
 			return usuario.map(UserDetailsImpl::new).get();
 		}
 }
+
