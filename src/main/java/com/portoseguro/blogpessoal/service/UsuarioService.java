@@ -1,9 +1,11 @@
 package com.portoseguro.blogpessoal.service;
 
 import java.nio.charset.Charset;
+
 import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,7 +18,7 @@ import com.portoseguro.blogpessoal.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-
+  
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
@@ -52,7 +54,7 @@ public class UsuarioService {
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setFoto(usuario.get().getFoto());
 				usuarioLogin.get().setToken(gerarBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
-				usuarioLogin.get().setSenha(usuario.get().getSenha());
+
 				return usuarioLogin;
 			}
 		}	
@@ -68,6 +70,7 @@ public class UsuarioService {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();	
 		return encoder.matches(senhaDigitada, senhaBanco);
 	}
+
 
 	private String gerarBasicToken(String usuario, String senha) {
 		String token = usuario + ":" + senha;

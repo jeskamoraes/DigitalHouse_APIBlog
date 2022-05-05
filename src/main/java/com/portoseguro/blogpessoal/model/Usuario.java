@@ -1,8 +1,10 @@
 package com.portoseguro.blogpessoal.model;
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,22 +21,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuarios")
+
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotNull(message = "O nome é obrigatório!")
+
+	@NotBlank(message = "O campo nome deve ser preenchido")
+	@Size(min = 3, max = 255, message = "O campo nome deve conter entre 3 e 255 caracteres")
 	private String nome;
 	
-	@Email(message = "email@email.com.br")
-	@NotBlank(message = "O e-mail é obrigatório!")
-	@Email(message = "O atributo Usuário deve ser um email válido")
+	@NotBlank(message = "O campo Email deve ser preenchido")
+	@Size(min = 10, max = 255, message = "O campo email deve conter entre 10 e 255 caracteres")
+	@Email(message = "O campo deve conter o caracter '@'")
 	private String usuario;
 	
-	@NotBlank
-	@Size(min = 8)
+	@NotBlank(message = "O campo senha deve ser preenchido")
+	@Size(min = 8, max = 255, message = "O campo senha deve conter entre 8 e 255 caracteres")
 	private String senha;
 	
 	private String foto;

@@ -10,9 +10,16 @@ import com.portoseguro.blogpessoal.model.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
-	public Optional<Usuario> findByUsuario(String usuario);
 	/*
-	 * MÉTODO CRIADO PARA A SESSÃO DE TESTES
+	 * A INTERFACE É RESPONSÁVEL PELA COMUNICAÇÃO DA API COM A BASE DE DADOS
+	 * OPTIONAL PODE RETORNAR UM VALOR NULO
+	 */
+	
+	public Optional<Usuario> findByUsuario(String Usuario);
+	
+	/*
+	 * MÉTODO IMPLEMENTADO PARA REALIZAÇÃO DE TESTES COM JUNIT
 	 */
 	public List<Usuario> findAllByNomeContainingIgnoreCase(String nome);
 }
+
