@@ -2,6 +2,7 @@ package com.portoseguro.blogpessoal.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Tema {
 	@Size(min = 10, max = 255, message = "O campo deve conter entre 3 e 255 caracteres")
 	private String descricaoTema;
 
-	@OneToMany
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
 

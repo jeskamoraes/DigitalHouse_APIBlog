@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.portoseguro.blogpessoal.model.Postagem;
 import com.portoseguro.blogpessoal.repository.PostagemRepository;
 import com.portoseguro.blogpessoal.repository.TemaRepository;
+import com.portoseguro.blogpessoal.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/postagens")
@@ -32,6 +33,9 @@ public class PostagemController {
 
 	@Autowired
 	private TemaRepository temaRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
 	@GetMapping
 	public ResponseEntity<List<Postagem>> getAll() {
@@ -52,14 +56,17 @@ public class PostagemController {
 	@PostMapping
 	public ResponseEntity<Postagem> postPostagem(@Valid @RequestBody Postagem postagem) {
 		if (temaRepository.existsById(postagem.getTema().getIdTema()))
-			return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+			if (usuarioRepository.existsById(postagem.getUsuario().getId()))
+				return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
+
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 
 	@PutMapping
 	public ResponseEntity<Postagem> putPostagem(@Valid @RequestBody Postagem postagem) {
 		if (postagemRepository.existsById(postagem.getId())) {
 			if (temaRepository.existsById(postagem.getTema().getIdTema()))
+				if (usuarioRepository.existsById(postagem.getUsuario().getId()))
 				return ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem));
 			return ResponseEntity.notFound().build();
 		}
