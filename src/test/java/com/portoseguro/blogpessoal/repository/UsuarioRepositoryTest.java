@@ -17,9 +17,9 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import com.portoseguro.blogpessoal.model.Usuario;
 
 /*
- * - RANDOM_PORT: SE A PORTA PRINICPAL ESTIVER OCUPADA O SPRING VAI ATRIBUIR UMA NOVA PORTA 
+ * RANDOM_PORT: SE A PORTA PRINICPAL ESTIVER OCUPADA O SPRING VAI ATRIBUIR UMA NOVA PORTA 
  * AUTOMATICAMENTE
- * - TestInstance.Lifecycle.PER_CLASS: INDICA QUE O CICLO DE VIDA DA CLASSE CRIADA SERÁ POR CLASSE
+ * TestInstance.Lifecycle.PER_CLASS: INDICA QUE O CICLO DE VIDA DA CLASSE CRIADA SERÁ POR CLASSE
  */
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -52,6 +52,6 @@ public class UsuarioRepositoryTest {
 		assertEquals(3, listaDeUsuarios.size());
 		assertTrue(listaDeUsuarios.get(0).getNome().equals("Florzinha"));
 		assertTrue(listaDeUsuarios.get(1).getNome().equals("Lindinha"));
-		assertTrue(listaDeUsuarios.get(3).getNome().equals("Docinho"));
+		assertTrue(listaDeUsuarios.get(2).getNome().equals("Docinho"));
 	}
 }
