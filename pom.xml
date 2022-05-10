@@ -79,6 +79,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- DEPENDÊNCIA PARA GERAR DOCUMENTAÇÃO -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>

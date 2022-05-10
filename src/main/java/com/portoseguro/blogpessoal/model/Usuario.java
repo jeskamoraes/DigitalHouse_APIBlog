@@ -4,7 +4,6 @@ package com.portoseguro.blogpessoal.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,10 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 
 
 @Entity
@@ -32,9 +32,9 @@ public class Usuario {
 	@Size(min = 3, max = 255, message = "O campo nome deve conter entre 3 e 255 caracteres")
 	private String nome;
 	
-	@NotBlank(message = "O campo Email deve ser preenchido")
-	@Size(min = 10, max = 255, message = "O campo email deve conter entre 10 e 255 caracteres")
-	@Email(message = "O campo deve conter o caracter '@'")
+	@Schema(example = "email@email.com.br")
+	@NotBlank(message = "O e-mail é obrigatório!")
+	@Email(message = "O atributo Usuário deve ser um email válido")
 	private String usuario;
 	
 	@NotBlank(message = "O campo senha deve ser preenchido")
